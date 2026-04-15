@@ -8,8 +8,8 @@ try {
   if (!window.supabase || typeof window.supabase.createClient !== 'function') {
     throw new Error('Supabase CDN not loaded');
   }
-  if (typeof SUPABASE_URL === 'undefined' || SUPABASE_URL.includes('YOUR_SUPABASE') ||
-      typeof SUPABASE_ANON_KEY === 'undefined' || SUPABASE_ANON_KEY.includes('YOUR_SUPABASE')) {
+  if (typeof SUPABASE_URL === 'undefined' || SUPABASE_URL.includes('https://fdeamqeejklhbyluygfy.supabase.co') ||
+      typeof SUPABASE_ANON_KEY === 'undefined' || SUPABASE_ANON_KEY.includes('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZkZWFtcWVlamtsaGJ5bHV5Z2Z5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyNDM4NjMsImV4cCI6MjA5MTgxOTg2M30.0q7IaTPGhLl-EzeN4yd5T_aJpzVtY84lzFDJdgJ4zuE')) {
     throw new Error('Supabase credentials not configured. Please update js/config.js with your project credentials.');
   }
   supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
