@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>France Classification — Login</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/france-flag.svg">
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-container">
+      <div class="login-card">
+        <div class="login-logo">
+          <div class="login-logo-img">
+            <img src="assets/france-flag.svg" alt="France Flag">
+          </div>
+          <h1>France Classification</h1>
+          <p>Wheelchair Basketball Player Registry</p>
+        </div>
+
+        <div id="login-error" class="alert alert-error" style="display:none;"></div>
+
+        <form id="login-form" autocomplete="on">
+          <div class="form-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" class="form-control"
+              placeholder="admin@example.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" class="form-control"
+              placeholder="••••••••" required autocomplete="current-password">
+          </div>
+          <button type="submit" id="btn-login" class="btn btn-primary btn-lg btn-block" style="margin-top:0.25rem;">
+            Sign In
+          </button>
+        </form>
+
+        <p style="text-align:center;margin-top:1.5rem;font-size:0.75rem;color:var(--text-muted);">
+          Administrator access only
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form      = document.getElementById('login-form');
+      const errorDiv  = document.getElementById('login-error');
+      const submitBtn = document.getElementById('btn-login');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorDiv.style.display = 'none';
+
+        if (!window.supabaseClient) {
+          errorDiv.textContent = 'Connection error: Supabase not loaded. Check your config.js credentials.';
+          errorDiv.style.display = 'flex';
+          return;
+        }
+
+        const email    = document.getElementById('login-email').value.trim();
+        const password = document.getElementById('login-password').value;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Signing in…';
+
+        try {
+          await Auth.login(email, password);
+          window.location.href = 'dashboard.html';
+        } catch (err) {
+          errorDiv.textContent = err.message || 'Invalid credentials. Please try again.';
+          errorDiv.style.display = 'flex';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Sign In';
+        }
+      });
+
+      try {
+        if (window.Auth && window.supabaseClient) Auth.redirectIfAuthenticated().catch(() => {});
+      } catch (e) {}
+    });
+  </script>
+</body>
+</html>
