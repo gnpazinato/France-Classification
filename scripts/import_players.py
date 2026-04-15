@@ -21,8 +21,8 @@ import re
 from datetime import datetime, date
 
 # ── CONFIGURATION ────────────────────────────────────────────────────────────
-SUPABASE_URL     = "https://fdeamqeejklhbyluygfy.supabase.co"
-SERVICE_ROLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZkZWFtcWVlamtsaGJ5bHV5Z2Z5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NjI0Mzg2MywiZXhwIjoyMDkxODE5ODYzfQ.ZdVy425KmKYoFpsMwygDUl1XCzJoZSdkYv_PTC4pNKc"
+SUPABASE_URL     = "https://YOUR-PROJECT.supabase.co"
+SERVICE_ROLE_KEY = "YOUR-SERVICE-ROLE-KEY"
 EXCEL_FILE       = "../../../uploads/01-FRANCE 13 04 26 copie.xlsx"
 # ─────────────────────────────────────────────────────────────────────────────
 

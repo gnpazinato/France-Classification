@@ -6,8 +6,8 @@
 // See config.example.js for a safe template.
 // ============================================================
 
-const SUPABASE_URL = 'https://fdeamqeejklhbyluygfy.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZkZWFtcWVlamtsaGJ5bHV5Z2Z5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyNDM4NjMsImV4cCI6MjA5MTgxOTg2M30.0q7IaTPGhLl-EzeN4yd5T_aJpzVtY84lzFDJdgJ4zuE';
+const SUPABASE_URL = 'YOUR_SUPABASE_URL_HERE';
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE';
 
 const APP_CONFIG = {
   appName: 'France Classification',

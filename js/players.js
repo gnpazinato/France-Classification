@@ -365,6 +365,8 @@ const Players = {
 
   // ─── Print Card ───────────────────────────────────────────────────
   openPrintCard(id) {
+    // dataset values from HTML are always strings — cast to number for strict equality
+    id = parseInt(id, 10);
     const p = this.data.find(pl => pl.id === id);
     if (!p) return;
 

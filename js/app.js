@@ -26,7 +26,12 @@ const App = {
   formatDate(dateStr) {
     if (!dateStr) return null;
     try {
-      const d = new Date(dateStr);
+      // Parse as LOCAL date (not UTC) to avoid timezone-shift bug.
+      // new Date('YYYY-MM-DD') treats the string as UTC midnight, which
+      // shifts the displayed date back 1 day for timezones behind UTC.
+      const parts = String(dateStr).split('T')[0].split('-');
+      if (parts.length !== 3) return null;
+      const d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
       if (isNaN(d.getTime())) return null;
       return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
     } catch { return null; }
@@ -34,11 +39,8 @@ const App = {
 
   formatDateInput(dateStr) {
     if (!dateStr) return '';
-    try {
-      const d = new Date(dateStr);
-      if (isNaN(d.getTime())) return '';
-      return d.toISOString().split('T')[0];
-    } catch { return ''; }
+    // Supabase returns dates as 'YYYY-MM-DD' — return directly, no Date parsing needed.
+    return String(dateStr).split('T')[0] || '';
   },
 
   // Returns { label, cssClass } for an expiry date
